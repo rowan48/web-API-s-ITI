@@ -8,6 +8,7 @@
 <!--</head>-->
 <!--<body>-->
 <?php
+require_once("config.php");
 //$api_key = "55ced2aa119199ca2e7bd7af662dbc6d";
 //$url="http://api.openweathermap.org/data/2.5/weather?q=".$_POST["city"]."&APPID=".$api_key;
 $url=__WEATHER_URL;
@@ -22,20 +23,27 @@ $curl_opt = array(
     CURLOPT_HTTPHEADER => array("content-type: application/x-www-form-urlencoded"),
     //CURLOPT_HTTPHEADER => array("content-type: application/x-www-form-urlencoded"),
 );
-$curl = curl_init();
-curl_setopt_array($curl, $curl_opt);
-$response = curl_exec($curl);
-$err = curl_error($curl);
-if($response){
-    $decode_response = json_decode($response, true);
-    echo "The weather of " . $decode_response['name'] . " at " . date('d M Y') . " is " . ucwords($decode_response['weather'][0]['description'])." <br>temperature is ".$decode_response['main']['temp']."<br>wind speed is ".$decode_response['wind']['speed'];
-    //echo "The weather of " . $decode_response['city_name_en'] . " at " . date('d M Y') . " is " . ucwords($decode_response['weather'][0]['description']);
+try {
+    $curl = curl_init();
+    curl_setopt_array($curl, $curl_opt);
+    $response = curl_exec($curl);
+    $err = curl_error($curl);
+    if($response){
+        $decode_response = json_decode($response, true);
+        echo "The weather of " . $decode_response['name'] . " at " . date('d M Y') . " is " . ucwords($decode_response['weather'][0]['description'])." <br>temperature is ".$decode_response['main']['temp']."<br>wind speed is ".$decode_response['wind']['speed'];
+        //echo "The weather of " . $decode_response['city_name_en'] . " at " . date('d M Y') . " is " . ucwords($decode_response['weather'][0]['description']);
 
-}else{
+    }else{
+        echo"Error Get Data From Server!";
+        echo"<br>";
+        print_r($err);
+    }
+
+}catch (){
     echo"Error Get Data From Server!";
-    echo"<br>";
-    print_r($err);
+
 }
+
 ?>
 </body>
 </html>
