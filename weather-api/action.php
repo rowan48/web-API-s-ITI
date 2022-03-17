@@ -1,15 +1,16 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>	Check Weather</title>
-    <link rel="stylesheet" href="">
-</head>
-<body>
+<!--<!DOCTYPE html>-->
+<!--<html>-->
+<!--<head>-->
+<!--    <meta charset="utf-8">-->
+<!--    <meta http-equiv="X-UA-Compatible" content="IE=edge">-->
+<!--    <title>	Check Weather</title>-->
+<!--    <link rel="stylesheet" href="">-->
+<!--</head>-->
+<!--<body>-->
 <?php
-$api_key = "55ced2aa119199ca2e7bd7af662dbc6d";
-$url="http://api.openweathermap.org/data/2.5/weather?q=".$_POST["city"]."&APPID=".$api_key;
+//$api_key = "55ced2aa119199ca2e7bd7af662dbc6d";
+//$url="http://api.openweathermap.org/data/2.5/weather?q=".$_POST["city"]."&APPID=".$api_key;
+$url=__WEATHER_URL;
 $curl_opt = array(
     CURLOPT_URL => $url,
     CURLOPT_RETURNTRANSFER => true,
