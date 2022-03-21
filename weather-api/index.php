@@ -1,24 +1,35 @@
 <?php
 //require_once ("config.php");
+require("autoload.php");
 ini_set('memory_limit', '-1');
-$arr =[];
-$json=file_get_contents("city.list.json");
-$data=json_decode($json,true);
-foreach($data as $vi ) {
-    foreach($vi as $key => $value) {
-        //echo $key . " => " . $value . "<br>";
-        if ($value == "EG"){
-            $arr[]=$vi["name"];
-            //var_dump($arr);
-
-        }
-    }
+$weather = new Weather();
+$arr = $weather->get_cities();
+if (isset($_POST["city"])) {
+    $weather->get_weather();
 
 }
+
+//$arr =[];
+//$json=file_get_contents("city.list.json");
+//$data=json_decode($json,true);
+//foreach($data as $vi ) {
+//    foreach($vi as $key => $value) {
+//        //echo $key . " => " . $value . "<br>";
+//        if ($value == "EG"){
+//            $arr[]=$vi["name"];
+//            //snippets--pdp
+//            //var_dump($arr);
 //
-for($i=0;$i<count($arr);$i++){
-    // echo "$arr[$i]"."<br>";
-}
+//        }
+//    }
+//
+//}
+//
+//for($i=0;$i<count($arr);$i++){
+//    // echo "$arr[$i]"."<br>";
+/*    highlight_string('<?php ' . var_export($arr, true) . ';?>');*/
+//    //die();
+//}
 
 ?>
 <!DOCTYPE html>
@@ -27,60 +38,16 @@ for($i=0;$i<count($arr);$i++){
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>	Check Weather</title>
-	<link rel="stylesheet" href="">
 </head>
 <body>
-	<form action="action.php" method="post">
+	<form action="#" method="post">
         <select name="city" >
 		<?php
             for($i=0;$i<count($arr);$i++){?>
-
                 <option value="<?php echo $arr[$i]?>"><?php echo $arr[$i]?></option><?php }?>
-<!--                   <option value="--><?//= $i ?><!--" q="--><?//= $arr[$i] ?><!--">--><?//= $arr[$i]?><!--</option>--><?php //}?>
-
         </select>
             <button type="submit" name="submit">Submit</button>
         <form>
-            <?php require "action.php" ?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<!--            --><?php //require "action.php" ?>
 </body>
 </html>
-
-
-
-<!--			<option value="Cairo">cairo</option>-->
-<!--			<option value="Alexandria">alex</option>-->
-<!--			<option value="Fayoum">Fayoum</option>-->
-<!--            <option value="El-Mahalla El-Kubra	">El-Mahalla El-Kubra	</option>-->-->
-<!--            <option value="Tanta">Tanta</option>-->
-<!--            <option value="Damanhur">Damanhur	</option>-->
-<!--            <option value="al-Minya">al-Minya	</option>-->
-<!--            <option value="Beni Suef">Beni Suef	</option>-->
-<!--            <option value="Qena">Qena</option>-->
-<!--            <option value="Sohag">Sohag</option>-->
-<!--            <option value="Hurghada">Hurghada</option>-->
-<!--            <option value="6th of October City">6th of October City</option>-->-->
-<!--            <option value="Shibin El Kom">Shibin El Kom	</option>-->-->
-<!--            <option value="Kafr el-Sheikh">Kafr el-Sheikh</option>-->-->
-<!--            <option value="Arish">Arish</option>-->
-<!--            <option value="Mallawi">Mallawi	</option>-->
-
-
-
-<!--        </select>-->
-<!--		<button type="submit" name="submit">Submit</button>-->
-<!--	</form>-->
